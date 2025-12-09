@@ -9,6 +9,20 @@ contract WriteToDoubleMapping {
             // your code here
             // set the `value` for a `user` and a `token`
             // Hint: https://www.rareskills.io/post/solidity-dynamic
+
+            let fmp := mload(0x40)
+
+            let slot0 := balances.slot
+            mstore(fmp, user)
+            mstore(add(fmp, 0x20), slot0)
+
+            let slot1 := keccak256(fmp, 0x40)
+            mstore(fmp, token)
+            mstore(add(fmp, 0x20), slot1)
+
+            let targetSlot := keccak256(fmp, 0x40)
+
+            sstore(targetSlot, value)
         }
     }
 }

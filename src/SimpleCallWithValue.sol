@@ -9,6 +9,12 @@ contract SimpleCallWithValue {
             // call "t.foo()" while sending msg.value
             // hint: "foo()" has function selector 0xc2985578
             // hint: callvalue() returns the value of the current call
+
+            let fmp := mload(0x40)
+
+            mstore(fmp, shl(224, 0xc2985578))
+
+            let c := call(gas(), t, callvalue(), fmp, 0x04, 0, 0)
        }
     }
 }

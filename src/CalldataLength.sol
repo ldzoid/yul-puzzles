@@ -7,6 +7,10 @@ contract CalldataLength {
             // your code here
             // return the length of the calldata
             // hint: calldatasize opcode
+
+            let fmp := mload(0x40)
+            mstore(fmp, calldatasize())
+            return(fmp, 32)
         }
     }
 }

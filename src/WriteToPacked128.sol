@@ -2,7 +2,7 @@
 pragma solidity ^0.8.13;
 
 contract WriteToPacked128 {
-    uint128 public writeHere = 1;
+    uint128 public writeHere = 1; // @n stored in bottom 128-255
     uint128 public someValue = 7;
 
     function main(uint256 v) external {
@@ -12,6 +12,12 @@ contract WriteToPacked128 {
             // be careful not to alter the value of `someValue` variable
             // Hint: storage slots are arranged sequentially. Determine the storage slot of `writeHere`
             // and use `sstore` to modify only the `writeHere` variable.
+
+            let newV := shr(128, shl(128, v))
+            let someV := shl(128, shr(128, sload(someValue.slot))) // @n clean up old writeHere
+
+            let finalV := or(newV, someV)
+            sstore(someValue.slot, finalV)
         }
     }
 }

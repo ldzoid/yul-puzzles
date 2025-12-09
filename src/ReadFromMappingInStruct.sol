@@ -6,7 +6,7 @@ contract ReadFromMappingInStruct {
         uint256 someValue1;
         uint128 someValue2;
         uint128 someValue3;
-        mapping(uint256 index => uint256) readMe;
+        mapping(uint256 index => uint256) readMe; // @n slot 3
         uint256 someValue4;
     }
 
@@ -28,6 +28,15 @@ contract ReadFromMappingInStruct {
             // within the struct `RandomValues`, read from the mapping `readMe` at `index`
             // and return it
             // Hint: https://www.rareskills.io/post/solidity-dynamic
+
+            let fmp := mload(0x40)
+
+            mstore(fmp, index)
+            mstore(add(fmp, 0x20), 3)
+            let targetSlot := keccak256(fmp, 0x40)
+            let result := sload(targetSlot)
+            mstore(fmp, result)
+            return(fmp, 0x20)
         }
     }
 }

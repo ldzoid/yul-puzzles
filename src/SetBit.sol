@@ -8,6 +8,13 @@ contract SetBit {
           // your code here
           // set the i-th bit of x to 1, keeping every other bit the same
           // return the result
+
+          let mask := shl(i, 1)
+          let r := or(mask, x)
+
+          let fmp := mload(0x40)
+          mstore(fmp, r)
+          return(fmp, 0x20)
      }
   }
 }

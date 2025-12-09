@@ -11,6 +11,17 @@ contract BalanceOf {
             // hint: balanceOf has function selector 0x70a08231 and signature "balanceOf(address)"
             // hint: since this is a view function, you should use staticcall
             // hint: use `returndatacopy` to copy the return data to the memory
+
+            let fmp := mload(0x40)
+
+            mstore(fmp, shl(224, 0x70a08231))
+            mstore(add(fmp, 0x04), address())
+
+            let c := staticcall(gas(), token, fmp, 0x24, 0, 0)
+
+            returndatacopy(fmp, 0, returndatasize())
+
+            return(fmp, returndatasize())
        }
     }
 }

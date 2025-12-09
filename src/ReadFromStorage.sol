@@ -14,6 +14,12 @@ contract ReadFromStorage {
             // read the value in the storage variable `readMe`
             // and return it
             // Hint: use sload opcode
+
+            let fmp := mload(0x40)
+
+            mstore(fmp, sload(0))
+
+            return(fmp, 0x20)
         }
     }
 }

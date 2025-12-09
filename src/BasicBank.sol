@@ -8,13 +8,27 @@ contract BasicBank {
 
     error InsufficientBalance();
 
-    mapping(address => uint256) public balances;
+    mapping(address => uint256) public balances; // @n base slot 0
 
     function deposit() external payable {
         bytes32 depositSelector = Deposit.selector;
         assembly {
             // emit Deposit(msg.sender, msg.value)
             // increment the balance of the msg.sender by msg.value
+
+            let fmp := mload(0x40)
+            mstore(fmp, caller())
+            let targetSlot := keccak256(fmp, 0x40)
+
+            let currentBalance := sload(targetSlot)
+            let newBalance := add(currentBalance, callvalue())
+            sstore(targetSlot, newBalance)
+
+            let t0 := depositSelector
+            let t1 := caller()
+            mstore(fmp, callvalue())
+            log2(fmp, 0x20, t0, t1)
+
         }
     }
 
@@ -26,6 +40,27 @@ contract BasicBank {
             // if the balance is less than amount, revert InsufficientBalance()
             // decrement the balance of the msg.sender by amount
             // send the amount to the msg.sender
+
+            let fmp := mload(0x40)
+            mstore(fmp, caller())
+            let targetSlot := keccak256(fmp, 0x40)
+
+            let currentBalance := sload(targetSlot)
+            
+            if gt(amount, currentBalance) {
+                mstore(fmp, insufficientBalanceSelector)
+                revert(fmp, 0x04)
+            }
+
+            let newBalance := sub(currentBalance, amount)
+            sstore(targetSlot, newBalance)
+
+            let c := call(gas(), caller(), amount, 0, 0, 0, 0)
+
+            let t0 := withdrawSelector
+            let t1 := caller()
+            mstore(fmp, amount)
+            log2(fmp, 0x20, t0, t1)
         }
     }
 }

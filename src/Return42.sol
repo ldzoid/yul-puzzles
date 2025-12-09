@@ -13,6 +13,11 @@ contract Return42 {
           // hint: you need to return 32 bytes of size
           // even though the returned value is 42
           // https://www.rareskills.io/post/assembly-revert
+
+          let fmp := mload(0x40)
+
+          mstore(fmp, 42)
+          return(fmp, 32)
       }
   }
 }

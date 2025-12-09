@@ -8,8 +8,8 @@ contract ReturnBool {
             // the goal here is to return true
 
             // solution
-            mstore(0x00, 0x01)
-            return(0x00, 0x20)
+            mstore(0x00, 0x01) // @n store in memory (location, 32-byte left padded value)
+            return(0x00, 0x20) // @n return from memory (offset, length)
         }
     }
 }

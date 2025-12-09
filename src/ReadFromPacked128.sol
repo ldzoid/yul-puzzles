@@ -2,8 +2,8 @@
 pragma solidity ^0.8.13;
 
 contract ReadFromPacked128 {
-    uint128 someValue;
-    uint128 readMe;
+    uint128 someValue; // @n 0 bytes offset this one is stored in 128-256
+    uint128 readMe; // @n 16 bytes offset this one is stored in 0-128
 
     function setValue(uint128 v1, uint128 v2) external {
         someValue = v1;
@@ -15,6 +15,16 @@ contract ReadFromPacked128 {
             // your code here
             // unpack and read data from the storage variable `readMe` of type uint128
             // then return it
+
+            let fmp := mload(0x40)
+            let offset := readMe.offset
+            let offsetInBits := mul(offset, 8)
+
+
+            let value := shr(offsetInBits, sload(readMe.slot))
+
+            mstore(fmp, value)
+            return(fmp, 0x20)
         }
     }
 }

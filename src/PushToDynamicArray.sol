@@ -9,6 +9,19 @@ contract PushToDynamicArray {
             // your code here
             // push the newValue to the dynamic array `pushToMe`
             // Hint: https://www.rareskills.io/post/solidity-dynamic
+
+            let fmp := mload(0x40)
+            let lengthSlot := pushToMe.slot
+            let length := sload(lengthSlot)
+
+            sstore(lengthSlot, add(length, 1)) // @n increment length
+
+            mstore(fmp, lengthSlot)
+            let arraySlot := keccak256(fmp, 0x20)
+
+            let slotToWrite := add(arraySlot, length)
+
+            sstore(slotToWrite, newValue) // @n push value
         }
     }
 

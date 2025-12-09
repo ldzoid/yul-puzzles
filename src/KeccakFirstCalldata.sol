@@ -9,6 +9,14 @@ contract KeccakFirstCalldata {
             // Hint: use keccak256(offset, size)
             // Hint: don't forget to account for the offset
             // read this article for hints: https://www.rareskills.io/post/abi-encoding
+
+            let fmp := mload(0x40)
+
+            calldatacopy(fmp, 0x04, 0x20) // @n copy the first argument to memory
+
+            mstore(fmp, keccak256(fmp, 0x20))
+
+            return(fmp, 0x20)
         }
     }
 }

@@ -12,6 +12,12 @@ contract EventWithoutData {
             // use `log1` to emit the event with one topic, which is the event's signature hash
             // Hint: Calculate the event signature hash using `keccak256("MyEvent()")`
             // The event hash serves as `topic0` in the log
+
+            let fmp := mload(0x40)
+            mstore(fmp, "MyEvent()") // @n 9 bytes
+            let fullHash := keccak256(fmp, 9)
+            mstore(fmp, fullHash)
+            log1(0, 0, fullHash)
         }
     }
 }

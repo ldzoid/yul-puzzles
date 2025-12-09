@@ -11,6 +11,37 @@ contract FizzBuzz {
             // else return an empty string "".
 
             // Assume `num` is greater than 0.
+
+            let fmp := mload(0x40)
+
+            let div3 := iszero(mod(num, 3))
+            let div5 := iszero(mod(num, 5))
+            let both := eq(mul(div3, div5), 1)
+
+            if both {
+                mstore(fmp, 0x20)
+                mstore(add(fmp, 0x20), 8)
+                mstore(add(fmp, 0x40), "fizzbuzz")
+                return(fmp, 0x60)
+            }
+
+            if div3 {
+                mstore(fmp, 0x20)
+                mstore(add(fmp, 0x20), 4)
+                mstore(add(fmp, 0x40), "fizz")      
+                return(fmp, 0x60)
+            }
+
+            if div5 {
+                mstore(fmp, 0x20)
+                mstore(add(fmp, 0x20), 4)
+                mstore(add(fmp, 0x40), "buzz")      
+                return(fmp, 0x60)
+            }
+
+            mstore(fmp, 0x20)
+            mstore(add(fmp, 0x20), 0)
+            return(fmp, 0x40)
         }
     }
 }

@@ -8,6 +8,11 @@ contract Calculator {
 
     function add(uint256 x, uint256 y) external pure returns (uint256) {
         assembly {
+            let fmp := mload(0x40)
+            let result := add(x, y)
+
+            mstore(fmp, result)
+            return(fmp, 32)
             // your code here
             // add x and y
         }
@@ -15,6 +20,11 @@ contract Calculator {
 
     function sub(uint256 x, uint256 y) external pure returns (uint256) {
         assembly {
+            let fmp := mload(0x40)
+            let result := sub(x, y)
+
+            mstore(fmp, result)
+            return(fmp, 32)
             // your code here
             // subtract y from x
         }
@@ -22,6 +32,11 @@ contract Calculator {
 
     function mul(uint256 x, uint256 y) external pure returns (uint256) {
         assembly {
+            let fmp := mload(0x40)
+            let result := mul(x, y)
+
+            mstore(fmp, result)
+            return(fmp, 32)
             // your code here
             // multiply x by y
         }
@@ -29,6 +44,11 @@ contract Calculator {
 
     function div(uint256 x, uint256 y) external pure returns (uint256) {
         assembly {
+            let fmp := mload(0x40)
+            let result := div(x, y)
+
+            mstore(fmp, result)
+            return(fmp, 32)
             // your code here
             // div x by y
         }

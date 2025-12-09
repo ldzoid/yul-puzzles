@@ -10,6 +10,15 @@ contract CreateSimple {
             // hint: use the `create` opcode
             // hint: the bytecode is already in memory
 
+            let fmp := mload(0x40)
+
+            let size := mload(deploymentBytecode)
+
+            let c := create(0, add(deploymentBytecode, 0x20), size)
+
+            mstore(fmp, c)
+            return(fmp, 0x20)
+
         }
     }
 }

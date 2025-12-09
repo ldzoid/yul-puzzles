@@ -3,7 +3,7 @@ pragma solidity ^0.8.13;
 
 contract Log2 {
 
-    function main(uint256 x) external pure returns (uint256) {
+    function main(uint256 x) external pure returns (uint256) { // @n MSB
         assembly {
             // your code here
             // return log2 of x rounded down
@@ -18,7 +18,24 @@ contract Log2 {
             //   bin(6) = 0110, so log2(6) = 2
             //   bin(7) = 0111, so log2(6) = 2
             //   bin(8) = 1000, so log2(6) = 3
-  
+
+            let fmp := mload(0x40)
+
+            if iszero(x) {
+                revert(0, 0)
+            }
+
+            for {let i := 0} lt(i, 256) {i := add(i, 1)} {
+                if iszero(x) {
+                    mstore(fmp, sub(i, 1))
+                    return(fmp, 0x20)
+                }
+
+                x := shr(1, x)
+            }
+
+            mstore(fmp, 255)
+            return(fmp, 0x20)
         }
     }
 }

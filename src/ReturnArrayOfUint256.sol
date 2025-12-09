@@ -6,6 +6,15 @@ contract ReturnArrayOfUint256 {
         assembly {
             // your code here
             // return an array of [a,b,c]
+
+            let fmp := mload(0x40)
+            mstore(fmp, 0x20)
+            mstore(add(fmp, 0x20), 0x03)
+            mstore(add(fmp, 0x40), a)
+            mstore(add(fmp, 0x60), b)
+            mstore(add(fmp, 0x80), c)
+            
+            return(fmp, 0xc0)
         }
     }
 }

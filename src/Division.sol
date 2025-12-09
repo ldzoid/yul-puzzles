@@ -9,6 +9,14 @@ contract Division {
             // x and y can be negative or positive
             // return x / y
             // if y == 0 revert
+
+            if iszero(y) {
+                revert(0, 0)
+            }
+
+            let r := sdiv(x, y)
+            mstore(mload(0x40), r)
+            return(mload(0x40), 0x20)
        }
     }
 }

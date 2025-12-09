@@ -9,6 +9,14 @@ contract WriteToMapping {
             // your code here
             // store `value` at the `index` in the mapping `writeHere`
             // Hint: https://www.rareskills.io/post/solidity-dynamic
+
+            let fmp := mload(0x40)
+
+            mstore(fmp, index)
+
+            let slot := keccak256(fmp, 0x40)
+
+            sstore(slot, value)
         }
     }
 }

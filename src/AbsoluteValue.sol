@@ -10,6 +10,17 @@ contract AbsoluteValue{
           // hint: use signed comparisons
           // hint: https://www.rareskills.io/post/signed-int-solidity
 
+          let fmp := mload(0x40)
+
+          if slt(x, 0) {
+            let r := add(not(x), 1)
+            mstore(fmp, r)
+            return(fmp, 0x20)
+          }
+
+          mstore(fmp, x)
+          return(fmp, 0x20)
+          
       }
   }
 }

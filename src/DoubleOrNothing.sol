@@ -9,7 +9,11 @@ contract DoubleOrNothing {
             // 21 or less. If 2 * x > 21, then
             // return 0.
             // Hint: check if x ≤ 10, which is equivalent to x < 11
-
+            if lt(x, 11) {
+                let fmp := mload(0x40)
+                mstore(fmp, mul(2, x))
+                return(fmp, 0x20)
+            }
         }
     }
 }
