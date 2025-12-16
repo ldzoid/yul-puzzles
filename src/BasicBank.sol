@@ -8,7 +8,7 @@ contract BasicBank {
 
     error InsufficientBalance();
 
-    mapping(address => uint256) public balances; // @n base slot 0
+    mapping(address => uint256) public balances; // base slot 0
 
     function deposit() external payable {
         bytes32 depositSelector = Deposit.selector;
@@ -24,6 +24,7 @@ contract BasicBank {
             let newBalance := add(currentBalance, callvalue())
             sstore(targetSlot, newBalance)
 
+            // log event
             let t0 := depositSelector
             let t1 := caller()
             mstore(fmp, callvalue())
@@ -57,6 +58,7 @@ contract BasicBank {
 
             let c := call(gas(), caller(), amount, 0, 0, 0, 0)
 
+            // log event
             let t0 := withdrawSelector
             let t1 := caller()
             mstore(fmp, amount)

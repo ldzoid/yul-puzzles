@@ -22,7 +22,7 @@ contract ReadFromDynamicArrayAndRevertOnFailure {
 
             if gt(index, sub(length, 1)) {
                 // panic revert
-                mstore(fmp, shl(224, 0x4e487b71)) // @n Panic(uint256) sig
+                mstore(fmp, shl(224, 0x4e487b71)) // Panic(uint256) sig
                 mstore(add(fmp, 4), 0x32)
 
                 revert(fmp, 0x24)

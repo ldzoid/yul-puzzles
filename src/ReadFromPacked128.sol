@@ -2,8 +2,8 @@
 pragma solidity ^0.8.13;
 
 contract ReadFromPacked128 {
-    uint128 someValue; // @n 0 bytes offset this one is stored in 128-256
-    uint128 readMe; // @n 16 bytes offset this one is stored in 0-128
+    uint128 someValue; // 0 bytes offset this one is stored in 128-256
+    uint128 readMe; // 16 bytes offset this one is stored in 0-128
 
     function setValue(uint128 v1, uint128 v2) external {
         someValue = v1;

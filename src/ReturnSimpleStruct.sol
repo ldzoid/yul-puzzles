@@ -8,7 +8,7 @@ contract ReturnSimpleStruct {
         uint256 y;
     }
 
-    function main(uint256 x, uint256 y) external pure returns (Point memory) { // @n encoded inline without offset because it only contains static data
+    function main(uint256 x, uint256 y) external pure returns (Point memory) { // encoded inline without offset because it only contains static data
         assembly {
             // your code here
             // return the struct: `Point{x,y}`

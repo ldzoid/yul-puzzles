@@ -19,27 +19,25 @@ contract EventWithComplexData {
             let playersPtr := players
             let scoresPtr := scores
 
-            let length1 := mload(playersPtr) // @n length 1
-            let length2 := mload(scoresPtr) // @n length 2
-
-            // log2(sub(playersPtr, 0x40), totalLength, t0, t1)
+            let length1 := mload(playersPtr) // length 1
+            let length2 := mload(scoresPtr) // length 2
 
             let offset1 := 0x40
             let offset2 := add(0x60, mul(length1, 0x20))
 
-            mstore(fmp, offset1) // @n offset to len1
-            mstore(add(fmp, 0x20), offset2) // @n offset to len2
+            mstore(fmp, offset1) // offset to len1
+            mstore(add(fmp, 0x20), offset2) // offset to len2
 
             mstore(add(fmp, offset1), length1)
             mstore(add(fmp, offset2), length2)
 
-            for {let i := 0} lt(i, length1) {i := add(i, 1)} { // @n array 1 copy
+            for {let i := 0} lt(i, length1) {i := add(i, 1)} { // array 1 copy
                 let element := mload(add(playersPtr, mul(add(i, 1), 0x20)))
                 let newLocation := add(fmp, add(offset1, mul(add(i, 1), 0x20)))
                 mstore(newLocation, element)
             }
 
-            for {let i := 0} lt(i, length2) {i := add(i, 1)} { // @n array 2 copy
+            for {let i := 0} lt(i, length2) {i := add(i, 1)} { // array 2 copy
                 let element := mload(add(scoresPtr, mul(add(i, 1), 0x20)))
                 let newLocation := add(fmp, add(offset2, mul(add(i, 1), 0x20)))
                 mstore(newLocation, element)

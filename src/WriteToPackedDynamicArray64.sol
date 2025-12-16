@@ -19,7 +19,7 @@ contract WriteToPackedDynamicArray64 {
 
             let fmp := mload(0x40)
             
-            sstore(0, 5) // @n store length
+            sstore(0, 5) // store length
 
             let arrayStart := keccak256(fmp, 0x20)
             sstore(arrayStart, slot0)

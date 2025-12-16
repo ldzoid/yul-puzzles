@@ -3,7 +3,7 @@ pragma solidity ^0.8.13;
 
 contract WriteToPacked64 {
     uint64 public someValue1 = 7;
-    uint64 public writeHere = 1; // @n position 64-128
+    uint64 public writeHere = 1; // position 64-128
     uint64 public someValue2 = 7;
     uint64 public someValue3 = 7;
 

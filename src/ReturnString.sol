@@ -11,7 +11,7 @@ contract ReturnString {
 
             mstore(fmp, 0x20)
             mstore(add(fmp, 0x20), 0x11)
-            mstore(add(fmp, 0x40), "Hello, RareSkills") // @n 17
+            mstore(add(fmp, 0x40), "Hello, RareSkills") // len 17
 
             return(fmp, 0x60)
         }

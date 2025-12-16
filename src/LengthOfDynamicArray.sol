@@ -10,7 +10,7 @@ contract LengthOfDynamicArray {
 
             let fmp := mload(0x40)
 
-            mstore(fmp, mload(x)) // @n loads length
+            mstore(fmp, mload(x))
 
             return(fmp, 0x20)
         }

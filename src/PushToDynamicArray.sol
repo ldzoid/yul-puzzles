@@ -14,14 +14,14 @@ contract PushToDynamicArray {
             let lengthSlot := pushToMe.slot
             let length := sload(lengthSlot)
 
-            sstore(lengthSlot, add(length, 1)) // @n increment length
+            sstore(lengthSlot, add(length, 1))
 
             mstore(fmp, lengthSlot)
             let arraySlot := keccak256(fmp, 0x20)
 
             let slotToWrite := add(arraySlot, length)
 
-            sstore(slotToWrite, newValue) // @n push value
+            sstore(slotToWrite, newValue)
         }
     }
 

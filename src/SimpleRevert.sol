@@ -9,7 +9,7 @@ contract SimpleRevert {
           // revert with no message
           // hint: https://www.rareskills.io/post/assembly-revert
 
-          revert(0, 0) // @n (location, size)
+          revert(0, 0)
       }
   }
 }

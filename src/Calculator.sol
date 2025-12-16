@@ -13,8 +13,6 @@ contract Calculator {
 
             mstore(fmp, result)
             return(fmp, 32)
-            // your code here
-            // add x and y
         }
     }
 
@@ -25,8 +23,6 @@ contract Calculator {
 
             mstore(fmp, result)
             return(fmp, 32)
-            // your code here
-            // subtract y from x
         }
     }
 
@@ -37,8 +33,6 @@ contract Calculator {
 
             mstore(fmp, result)
             return(fmp, 32)
-            // your code here
-            // multiply x by y
         }
     }
 
@@ -49,8 +43,6 @@ contract Calculator {
 
             mstore(fmp, result)
             return(fmp, 32)
-            // your code here
-            // div x by y
         }
     }
 }

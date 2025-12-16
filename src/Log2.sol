@@ -3,7 +3,7 @@ pragma solidity ^0.8.13;
 
 contract Log2 {
 
-    function main(uint256 x) external pure returns (uint256) { // @n MSB
+    function main(uint256 x) external pure returns (uint256) { // MSB
         assembly {
             // your code here
             // return log2 of x rounded down

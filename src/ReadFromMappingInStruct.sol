@@ -6,7 +6,7 @@ contract ReadFromMappingInStruct {
         uint256 someValue1;
         uint128 someValue2;
         uint128 someValue3;
-        mapping(uint256 index => uint256) readMe; // @n slot 3
+        mapping(uint256 index => uint256) readMe; // slot 3
         uint256 someValue4;
     }
 

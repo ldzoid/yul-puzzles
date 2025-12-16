@@ -15,7 +15,7 @@ contract RevertWithSelector {
             
             let fmp := mload(0x40)
 
-            mstore(fmp, 0xa3b7e096) // @n this will be right padded in 32 byte word
+            mstore(fmp, 0xa3b7e096) // right padded
             revert(add(fmp, sub(32, 4)), 0x04)
         }
     }

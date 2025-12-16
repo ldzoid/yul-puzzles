@@ -12,7 +12,7 @@ contract AbsoluteValue{
 
           let fmp := mload(0x40)
 
-          if slt(x, 0) {
+          if slt(x, 0) { // if negative, return 2's complement
             let r := add(not(x), 1)
             mstore(fmp, r)
             return(fmp, 0x20)

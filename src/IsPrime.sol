@@ -16,11 +16,11 @@ contract IsPrime {
                 return(fmp, 32)
             }
 
-            if or(eq(mod(x, 2), 0), eq(mod(x, 3), 0)) { // @n if its divisible by 2 or 3 return false
+            if or(eq(mod(x, 2), 0), eq(mod(x, 3), 0)) { // if its divisible by 2 or 3 return false
                 return(fmp, 32)
             }
 
-            for {let i := 5} lt(i, div(x, 2)) {i := add(i, 2)} { // @n loop from 5 to x/2
+            for {let i := 5} lt(i, div(x, 2)) {i := add(i, 2)} { // loop from 5 to x/2
                 if eq(mod(x, i), 0) {
                     return(fmp, 32)
                 }

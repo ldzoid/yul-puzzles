@@ -9,8 +9,8 @@ contract ReturnBytes {
 
             let fmp := mload(0x40)
 
-            mstore(fmp, 0x20) // @n offset to bytes length
-            mstore(add(fmp, 0x20), 0x40) // @n bytes length
+            mstore(fmp, 0x20)
+            mstore(add(fmp, 0x20), 0x40)
             mstore(add(fmp, 0x40), a)
             mstore(add(fmp, 0x60), b)
 

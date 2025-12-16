@@ -10,6 +10,7 @@ contract Approve {
             // hint: approve has function selector 0x095ea7b3 and signature "approve(address,uint256)"
 
             let fmp := mload(0x40)
+
             mstore(fmp, shl(224, 0x095ea7b3))
             mstore(add(fmp, 0x04), token)
             mstore(add(fmp, 0x24), amount)

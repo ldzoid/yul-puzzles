@@ -2,7 +2,7 @@
 pragma solidity ^0.8.13;
 
 contract ReadFromFixedArray {
-    uint256[5] readMe; // @n stored in slots 0, 1, 2, 3, 4
+    uint256[5] readMe; // stored in slots 0, 1, 2, 3, 4
 
     function setValue(uint256[5] calldata x) external {
         readMe = x;

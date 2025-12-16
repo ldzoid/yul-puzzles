@@ -12,7 +12,7 @@ contract KeccakFirstCalldata {
 
             let fmp := mload(0x40)
 
-            calldatacopy(fmp, 0x04, 0x20) // @n copy the first argument to memory
+            calldatacopy(fmp, 0x04, 0x20)
 
             mstore(fmp, keccak256(fmp, 0x20))
 

@@ -11,7 +11,7 @@ contract MaxOfArray {
             let fmp := mload(0x40)
             let length := mload(arr)
 
-            if eq(length, 0) { // @n if length is 0
+            if eq(length, 0) {
                 revert(0, 0)
             }
 

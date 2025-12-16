@@ -32,13 +32,13 @@ contract AnonymonusEventWithComplexData {
             let fmp := mload(0x40)
             let personPtr := person
 
-            mstore(fmp, 0x20) // @n offset to a struct
-            mstore(add(fmp, 0x20), 0x60) // @n offset to a string within
+            mstore(fmp, 0x20) // offset to a struct
+            mstore(add(fmp, 0x20), 0x60) // offset to a string within
 
-            mstore(add(fmp, 0x40), mload(add(personPtr, 0x20))) // @n age
-            mstore(add(fmp, 0x60), mload(add(personPtr, 0x40))) // @n gender
-            mstore(add(fmp, 0x80), mload(add(personPtr, 0x60))) // @n string length
-            mstore(add(fmp, 0xa0), mload(add(personPtr, 0x80))) // @n string
+            mstore(add(fmp, 0x40), mload(add(personPtr, 0x20))) // age
+            mstore(add(fmp, 0x60), mload(add(personPtr, 0x40))) // gender
+            mstore(add(fmp, 0x80), mload(add(personPtr, 0x60))) // string length
+            mstore(add(fmp, 0xa0), mload(add(personPtr, 0x80))) // string
 
             log3(fmp, mul(6, 0x20), 0, emitter, id)
         }

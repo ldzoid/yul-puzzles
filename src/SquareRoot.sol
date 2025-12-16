@@ -15,11 +15,6 @@ contract SquareRoot {
 
             let fmp := mload(0x40)
 
-            // 8 => 4-2 > 3 => 2-4 > 3
-            // 9 => 4-2 > 3 => 3 BINGO
-            // 10 => 5-2 > 4-2 > 3-3
-            // 14 => 7-2 > 4-3 > 3-4 > 3
-
             switch x
             case 0 {
                 mstore(fmp, 0)

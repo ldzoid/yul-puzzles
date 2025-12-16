@@ -2,7 +2,7 @@
 pragma solidity ^0.8.13;
 
 contract ReadFromDynamicArray {
-    uint256[] readMe; // @n slot 0 stores length
+    uint256[] readMe;
 
     function setValue(uint256[] calldata x) external {
         readMe = x;

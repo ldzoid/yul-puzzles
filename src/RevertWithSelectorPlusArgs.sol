@@ -12,7 +12,7 @@ contract RevertWithSelectorPlusArgs {
             // adjacent to each other in memory
 
             let fmp := mload(0x40)
-            mstore(fmp, shl(224, 0xae412287)) // @n selector left padded to one word
+            mstore(fmp, shl(224, 0xae412287))
             mstore(add(fmp, 4), x)
 
             revert(fmp, 0x24)
