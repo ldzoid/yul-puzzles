@@ -17,8 +17,8 @@ contract DeployNBytes {
                             
             mstore(fmp, shl(160, initCode))
 
-            mstore8(add(fmp, 1), size) // @n 2nd byte which says the size of runtime code to copy
-            mstore8(add(fmp, 8), size) // @n 9th byte which says size to return
+            mstore8(add(fmp, 1), size) // 2nd byte which says the size of runtime code to copy
+            mstore8(add(fmp, 8), size) // 9th byte which says size to return
 
             let c := create(0, fmp, add(12, size))
             mstore(fmp, c)
